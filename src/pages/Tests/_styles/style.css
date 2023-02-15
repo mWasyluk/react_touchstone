@@ -1,0 +1,27 @@
+.test-edit-view {
+    color: #fff;
+}
+
+.subtitle-tiles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
+}
+
+.test-edit-view .container {
+    min-height: 10vh;
+    text-align: start;
+}
+
+.frames-separator {
+    position: relative;
+    background-color: black;
+    height: 2px;
+    width: 1080px;
+    max-width: 100%;
+    left: 50%;
+    transform: translate(-50%);
+
+    box-shadow: 0px 1px 2px rgb(0, 0, 0);
+}

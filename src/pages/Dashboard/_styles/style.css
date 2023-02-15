@@ -1,0 +1,21 @@
+.tests-view {
+    --test-frame-width: 230px;
+    --test-frame-height: 300px;
+    --test-name-color: rgb(0, 92, 15);
+}
+
+.tests-view {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.tests-view .test-frame {
+    height: var(--test-frame-height);
+    width: var(--test-frame-width);
+    min-width: var(--test-frame-width);
+    max-width: var(--test-frame-width);
+
+    margin: 20px 0;
+}
