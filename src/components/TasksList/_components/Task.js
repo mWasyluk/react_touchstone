@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
+import TaskModel from 'models/TaskModel';
 import TaskPart from './TaskPart';
 
-export default function Task({ questionContent = '', answerContent = '', pointsAmount = 1, editable = false, updateTask = () => { } }) {
-    const [question, setQuestion] = useState(questionContent);
-    const [answer, setAnswer] = useState(answerContent);
-    const [points, setPoints] = useState(pointsAmount);
+export default function Task({ task = new TaskModel(), editable = false, updateTask = () => { } }) {
+    const [question, setQuestion] = useState(task.question);
+    const [answer, setAnswer] = useState(task.answer);
+    const [points, setPoints] = useState(task.points);
 
     const questionProps = {
         header: 'Pytanie:',

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { RiAddCircleLine } from 'react-icons/ri'
 import SaveTestIcon from 'assets/save-file.png'
+import TaskModel from 'models/TaskModel';
 import TasksList from 'components/TasksList';
 import TestHeader from './_components/TestHeader';
 import styled from 'styled-components';
@@ -37,7 +38,7 @@ function TestEdit(props) {
     const [tasks, setTasks] = useState(test.tasks);
 
     const addEmptyTask = () => {
-        const emptyTask = ({ question: '', answer: '', points: '' });
+        const emptyTask = new TaskModel();
         setTasks(prev => [...prev, emptyTask]);
     }
 

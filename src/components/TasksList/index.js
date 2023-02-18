@@ -22,9 +22,9 @@ export default function TasksList({ tasks: tasksProp = [], editable }) {
 
     return (
         <>
-            {tasks.map((task, index) =>
+            {tasks && tasks.map((task, index) =>
                 <div key={index}>
-                    <Task questionContent={task.question} answerContent={task.expected_answer} pointsAmount={task.points} editable={editable} updateTask={updateTask}></Task>
+                    <Task task={task} updateTask={updateTask} editable={editable}></Task>
                     {index < (tasks.length - 1) && <div className='frames-separator'></div>}
                 </div>
             )}
