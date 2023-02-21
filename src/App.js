@@ -35,7 +35,7 @@ function App() {
         return matchingTest;
     }
 
-    const updateTestById = updatedTest => {
+    const updateTest = updatedTest => {
         const matchingTest = tests.filter(t => t.id === updatedTest.id)[0];
 
         if (!matchingTest) {
@@ -79,7 +79,7 @@ function App() {
                         <TestCreate createTest={addTest} />
                     } />
                     <Route path={NavigationUtil.pathMatchers.tests.edit} element={
-                        <TestEdit getTestById={getTestById} updateTestById={updateTestById} />
+                        <TestEdit getTestById={getTestById} updateTestById={updateTest} />
                     } />
                     <Route path={NavigationUtil.pathMatchers.tests.run} element={
                         <TestRun getTestById={getTestById} />

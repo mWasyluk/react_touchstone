@@ -35,11 +35,10 @@ function TestEdit(props) {
     const { id } = useParams();
     const test = getTestById(id);
 
-    const [tasks, setTasks] = useState(test.tasks);
+    const [tasks, setTasks] = useState([...test.tasks]);
 
     const addEmptyTask = () => {
-        const emptyTask = new TaskModel();
-        setTasks(prev => [...prev, emptyTask]);
+        setTasks([...tasks, new TaskModel()]);
     }
 
     const saveTest = () => {
