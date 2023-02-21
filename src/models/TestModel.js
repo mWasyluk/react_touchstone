@@ -9,20 +9,27 @@ const defaultValues = {
 }
 
 class TestModel {
-    constructor(
-        id = UuidUtil.generateUuid(),
-        name = defaultValues.name,
-        type = defaultValues.type,
-        tags = defaultValues.tags,
-        passPercentage = defaultValues.passPercentage,
-        tasks = []
-    ) {
-        this.id = id;
+    constructor({
+        id,
+        name,
+        type,
+        tags,
+        passPercentage,
+        tasks,
+    } = {
+            id: UuidUtil.generateUuid(),
+            name: defaultValues.name,
+            type: defaultValues.type,
+            tags: defaultValues.tags,
+            passPercentage: defaultValues.passPercentage,
+            tasks: []
+        }) {
+        this.id = id ? id : UuidUtil.generateUuid();
         this.name = name;
         this.type = type;
         this.tags = tags;
         this.passPercentage = passPercentage;
-        this.tasks = tasks;
+        this.tasks = tasks.map(t => new TaskModel(t));
     }
 
     appendTask(task = new TaskModel()) {
