@@ -2,7 +2,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import { Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Dashboard from './pages/Dashboard';
 import Header from 'components/Header';
@@ -11,14 +11,15 @@ import NavigationUtil from 'utils/NavigationUtil';
 import NotFound from 'pages/NotFound';
 import TestCreate from 'pages/Tests/TestCreate';
 import TestEdit from 'pages/Tests/TestEdit';
+import TestModel from 'models/TestModel';
 import TestRun from 'pages/Tests/TestRun';
 
 export const appTitle = "Touchstone";
 document.title = appTitle;
 
 function App() {
-    const localTests = LocalStorageUtil.getTestsArray();
-    const [tests, setTests] = useState(localTests ? localTests : [])
+    const isMounted = useRef(false);
+    const [tests, setTests] = useState(LocalStorageUtil.getTestsAsModelsArray());
 
     const handleTestsChange = (tests = []) => {
         setTests(tests);
@@ -36,22 +37,21 @@ function App() {
     }
 
     const updateTest = updatedTest => {
-        const matchingTest = tests.filter(t => t.id === updatedTest.id)[0];
+        const indexToUpdate = tests.indexOf(tests.filter(t => t.id === updatedTest.id)[0]);
 
-        if (!matchingTest) {
-            console.error("Test with the given ID does not exist. ID:", updatedTest.id)
+        if (indexToUpdate < 0) {
+            console.error("Test with the given ID does not exist. ID:", updatedTest.id);
             return;
         }
 
-        const allTests = tests;
-        const matchingTestIndex = allTests.indexOf(matchingTest);
-        allTests[matchingTestIndex] = updatedTest;
-
-        setTests(allTests);
+        setTests(prev => {
+            prev[indexToUpdate] = new TestModel({ ...updatedTest });
+            return [...prev];
+        });
     }
 
     const addTest = test => {
-        setTests(prev => [test, ...prev])
+        setTests(prev => [new TestModel(test), ...prev]);
     }
 
     const removeTestById = id => {
@@ -61,8 +61,13 @@ function App() {
     }
 
     useEffect(() => {
-        LocalStorageUtil.saveTestsArray(tests)
-    }, [tests])
+        if (!isMounted.current) {
+            isMounted.current = true;
+            return;
+        }
+
+        LocalStorageUtil.saveTestsArray(tests);
+    }, [tests]);
 
     return (
         <div className="App">

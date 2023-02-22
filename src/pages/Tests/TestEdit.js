@@ -3,7 +3,6 @@ import './_styles/style.css'
 import { useNavigate, useParams } from 'react-router-dom';
 
 import AddTaskIcon from 'assets/add-frame.png'
-import { RiAddCircleLine } from 'react-icons/ri'
 import SaveTestIcon from 'assets/save-file.png'
 import TaskModel from 'models/TaskModel';
 import TasksList from 'components/TasksList';
