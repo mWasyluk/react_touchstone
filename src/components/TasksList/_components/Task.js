@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-import TaskModel from 'models/TaskModel';
 import TaskPart from './TaskPart';
 
-export default function Task({ task = new TaskModel(), editable = false, updateTask = () => { } }) {
+export default function Task({ task = {}, updateTask = () => { }, editable = false }) {
+    const id = task.id;
     const [question, setQuestion] = useState(task.question);
     const [answer, setAnswer] = useState(task.answer);
     const [points, setPoints] = useState(task.points);
@@ -30,9 +30,14 @@ export default function Task({ task = new TaskModel(), editable = false, updateT
     }
 
     useEffect(() => {
-        const updatedTask = { question, answer, points };
+        const updatedTask = { ...task };
+
+        updatedTask.question = question;
+        updatedTask.answer = answer;
+        updatedTask.points = points;
+
         updateTask(updatedTask);
-    }, [question, answer, points])
+    }, [task, id, question, answer, points, updateTask])
 
     return (
         <div className='task-editor'>

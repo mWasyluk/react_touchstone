@@ -41,6 +41,15 @@ function TestEdit(props) {
         setTasks([...tasks, new TaskModel()]);
     }
 
+    const updateTask = updatedTask => {
+        const indexToUpdate = tasks.indexOf(tasks.filter(t => t.id === updatedTask.id)[0]);
+
+        setTasks(old => {
+            old[indexToUpdate] = updatedTask;
+            return old;
+        });
+    }
+
     const saveTest = () => {
         updateTestById({ ...test, tasks: tasks });
         navi("/dashboard");
@@ -52,7 +61,7 @@ function TestEdit(props) {
 
             <div className="full-size-view-main-content test-edit-view">
                 <div className='container'>
-                    <TasksList tasks={tasks} editable></TasksList>
+                    <TasksList tasks={tasks} updateTask={updateTask} editable></TasksList>
                     <NewTaskButton onClick={addEmptyTask}><RiAddCircleLine /> Dodaj zadanie</NewTaskButton>
                 </div>
             </div>
