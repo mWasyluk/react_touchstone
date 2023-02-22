@@ -22,8 +22,8 @@ function TestCreate(props) {
     const navi = useNavigate();
 
     const newTest = new TestModel();
-    const [name, setName] = useState("");
-    const [type, setType] = useState("");
+    const [name, setName] = useState();
+    const [type, setType] = useState();
     const [tagsString, setTagsString, tags] = useTags();
     const [passPercentage, setPassPercentageString] = usePercentage();
 
@@ -45,8 +45,8 @@ function TestCreate(props) {
             </div>
 
             <div className="full-size-view-main-content view-center-content">
-                <LabeledTextInput labelContent={LabelTexts.name} placeholder={newTest.name} onChange={e => { setName(e.target.value.trim()) }} />
-                <LabeledTextInput labelContent={LabelTexts.type} placeholder={newTest.type} onChange={e => { setType(e.target.value.trim()) }} />
+                <LabeledTextInput labelContent={LabelTexts.name} placeholder={newTest.name} value={name} onChange={e => { setName(e.currentTarget.value) }} />
+                <LabeledTextInput labelContent={LabelTexts.type} placeholder={newTest.type} value={type} onChange={e => { setType(e.currentTarget.value.trim()) }} />
                 <LabeledTextInput labelContent={LabelTexts.tags} placeholder={newTest.tags + ', '} value={tagsString} onChange={e => { setTagsString(e.currentTarget.value) }} />
                 <LabeledTextInput labelContent={LabelTexts.passPercentage} placeholder={newTest.passPercentage} value={passPercentage} onChange={e => { setPassPercentageString(e.currentTarget.value) }} inputProps={{ maxLength: 3, style: { width: '3em', textAlign: 'center' } }} />
             </div>
