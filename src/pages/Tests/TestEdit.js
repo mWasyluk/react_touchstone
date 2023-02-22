@@ -2,6 +2,7 @@ import './_styles/style.css'
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import AddTaskIcon from 'assets/add-frame.png'
 import { RiAddCircleLine } from 'react-icons/ri'
 import SaveTestIcon from 'assets/save-file.png'
 import TaskModel from 'models/TaskModel';
@@ -62,7 +63,7 @@ function TestEdit(props) {
             <div className="full-size-view-main-content test-edit-view">
                 <div className='container'>
                     <TasksList tasks={tasks} updateTask={updateTask} editable></TasksList>
-                    <NewTaskButton onClick={addEmptyTask}><RiAddCircleLine /> Dodaj zadanie</NewTaskButton>
+                    <NewTaskButton onClick={addEmptyTask}><img alt='button_icon' className='button-icon' src={AddTaskIcon}></img> Dodaj zadanie</NewTaskButton>
                 </div>
             </div>
 
