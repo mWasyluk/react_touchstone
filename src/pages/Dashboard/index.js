@@ -9,7 +9,7 @@ import NavigationUtil from 'utils/NavigationUtil';
 import NewTestIcon from 'assets/add-file.png'
 import TestView from './_components/TestView';
 import { useEffect } from 'react';
-import useFileToObject from 'pages/Dashboard/_hooks/useFileToObject';
+import useFileToTestsArray from 'pages/Dashboard/_hooks/useFileToObject';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard(props) {
@@ -19,7 +19,7 @@ function Dashboard(props) {
         removeTestById = () => { },
     } = props
 
-    const [object, errorMessage, setFile] = useFileToObject();
+    const [testsModels, setFile] = useFileToTestsArray();
     const navi = useNavigate();
 
     const setFileWithTests = (file) => {
@@ -36,19 +36,9 @@ function Dashboard(props) {
     }
 
     useEffect(() => {
-        if (errorMessage) {
-            console.error(errorMessage);
-            return;
-        }
-
-        if (!object) return;
-
-        if (object instanceof Array)
-            setTestsArray(object);
-        else {
-            console.warn("Object provided as tests array is not an array.", object)
-        }
-    }, [object, errorMessage, setTestsArray])
+        if (!testsModels) return;
+        setTestsArray(testsModels);
+    }, [testsModels, setTestsArray])
 
     return (
         <div className="full-size-view-container tests-view-container">

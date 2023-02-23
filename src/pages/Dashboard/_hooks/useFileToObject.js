@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react";
 
-function useFileToObject(fileToConvert) {
+import TestModel from "models/TestModel";
+
+function useFileToTestsArray(fileToConvert) {
     const [file, setFile] = useState(fileToConvert);
-    const [object, setObject] = useState();
-    const [errorMessage, setErrorMessage] = useState("");
+    const [testsModels, setTestsModels] = useState();
 
     useEffect(() => {
         const fileReader = new FileReader();
 
         if (file) {
             fileReader.readAsText(file);
-            fileReader.onload = () => setObject(JSON.parse(fileReader.result));
-            fileReader.onerror = () => setErrorMessage(fileReader.error);
+            fileReader.onload = () => {
+                const array = JSON.parse(fileReader.result);
+                setTestsModels(array.map(t => new TestModel(t)));
+            };
+            fileReader.onerror = () => {
+                console.error(fileReader.error)
+            };
         }
     }, [file])
 
 
     return [
-        object,
-        errorMessage,
+        testsModels,
         setFile
     ]
 }
 
-export default useFileToObject;
+export default useFileToTestsArray;
