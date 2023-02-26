@@ -20,7 +20,7 @@ function Dashboard(props) {
     } = props
 
     const [testsModels, setFile] = useFileToTestsArray();
-    const navi = useNavigate();
+    const navigateTo = useNavigate();
 
     const setFileWithTests = (file) => {
         setFile(file)
@@ -62,7 +62,7 @@ function Dashboard(props) {
             <div className='view-bottom-menu'>
                 <button onClick={exportPersistedTests} className='view-support-button'><img alt='export_tests_icon' className='support-button-icon' src={ExportTestsIcon}></img>Wyeksportuj</button>
                 <button onClick={clearPersistedTests} className='view-support-button'><img alt='clear_tests_icon' className='support-button-icon' src={ClearTestsIcon}></img>Wyczyść</button>
-                <button onClick={() => navi(NavigationUtil.links.tests.new)} className='view-button'><img alt='button_icon' className='button-icon' src={NewTestIcon}></img>Nowy test</button>
+                <button onClick={() => navigateTo(NavigationUtil.links.ofTests.new)} className='view-button'><img alt='button_icon' className='button-icon' src={NewTestIcon}></img>Nowy test</button>
             </div>
         </div>
     )

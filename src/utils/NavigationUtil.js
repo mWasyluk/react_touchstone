@@ -14,13 +14,13 @@ const testPaths = {
 const NavigationUtil = {
     pathMatchers: {
         home: paths.home,
-        dashboard: {
+        ofDashboard: {
             home: paths.dashboard,
         },
-        profiles: {
+        ofProfiles: {
             home: paths.profiles,
         },
-        tests: {
+        ofTests: {
             home: paths.tests,
             new: `${paths.tests}${testPaths.new}`,
             edit: `${paths.tests}/:id${testPaths.edit}`,
@@ -30,13 +30,13 @@ const NavigationUtil = {
 
     links: {
         home: paths.home,
-        dashboard: {
+        ofDashboard: {
             home: paths.dashboard,
         },
-        profiles: {
+        ofProfiles: {
             home: paths.profiles,
         },
-        tests: {
+        ofTests: {
             home: paths.tests,
             new: `${paths.tests}${testPaths.new}`,
             editById(id) { return `${paths.tests}/${id}${testPaths.edit}` },

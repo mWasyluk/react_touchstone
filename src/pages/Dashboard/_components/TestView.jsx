@@ -62,7 +62,7 @@ function TestView(props = defaultProps) {
 
     const [displayPopup, setDisplayPopup] = useState(false);
 
-    const navi = useNavigate();
+    const navigateTo = useNavigate();
 
     return (
         <>
@@ -77,8 +77,8 @@ function TestView(props = defaultProps) {
 
                 <TestOptions>
                     <TestViewOption content={<TbTrashX />} onClick={() => setDisplayPopup(true)} style={{ color: '#cc3344', borderColor: '#cc3344' }}></TestViewOption>
-                    <TestViewOption content={<GrEdit />} onClick={() => navi(NavigationUtil.links.tests.editById(test.id))}></TestViewOption>
-                    <TestViewOption content={<IoPlay />} onClick={() => navi(NavigationUtil.links.tests.runById(test.id))}></TestViewOption>
+                    <TestViewOption content={<GrEdit />} onClick={() => navigateTo(NavigationUtil.links.ofTests.editById(test.id))}></TestViewOption>
+                    <TestViewOption content={<IoPlay />} onClick={() => navigateTo(NavigationUtil.links.ofTests.runById(test.id))}></TestViewOption>
                 </TestOptions>
             </TestViewContainer >
 

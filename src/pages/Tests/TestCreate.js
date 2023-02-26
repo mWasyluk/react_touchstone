@@ -19,7 +19,7 @@ function TestCreate(props) {
         createTest = () => { },
     } = props;
 
-    const navi = useNavigate();
+    const navigateTo = useNavigate();
 
     const newTest = new TestModel();
     const [name, setName] = useState();
@@ -34,7 +34,7 @@ function TestCreate(props) {
         (passPercentage || passPercentage === 0) && newTest.setPassPercentage(passPercentage);
 
         createTest(newTest);
-        navi(NavigationUtil.links.dashboard.home);
+        navigateTo(NavigationUtil.links.ofDashboard.home);
     }
 
     return (

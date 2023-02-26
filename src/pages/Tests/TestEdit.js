@@ -3,6 +3,7 @@ import './_styles/style.css'
 import { useNavigate, useParams } from 'react-router-dom';
 
 import AddTaskIcon from 'assets/add-frame.png'
+import NavigationUtil from 'utils/NavigationUtil';
 import SaveTestIcon from 'assets/save-file.png'
 import TaskModel from 'models/TaskModel';
 import TasksList from 'components/TasksList';
@@ -31,7 +32,7 @@ function TestEdit(props) {
         updateTestById = () => { },
     } = props;
 
-    const navi = useNavigate();
+    const navigateTo = useNavigate();
     const { id } = useParams();
     const test = getTestById(id);
 
@@ -52,7 +53,7 @@ function TestEdit(props) {
 
     const saveTest = () => {
         updateTestById({ ...test, tasks: tasks });
-        navi("/dashboard");
+        navigateTo(NavigationUtil.links.ofDashboard.home);
     }
 
     return (

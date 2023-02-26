@@ -18,12 +18,12 @@ function Header() {
         profile: {
             title: 'Profil',
             image: ProfileImage,
-            link: NavigationUtil.links.profiles.home
+            link: NavigationUtil.links.ofProfiles.home
         },
         dashboard: {
             title: 'Tablica',
             image: DashboardImage,
-            link: NavigationUtil.links.dashboard.home
+            link: NavigationUtil.links.ofDashboard.home
         }
     }
 

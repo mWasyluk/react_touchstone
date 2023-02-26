@@ -77,16 +77,16 @@ function App() {
                     <Route path={NavigationUtil.pathMatchers.home} element={
                         <h1 style={{ color: 'white' }}>Home screen</h1>
                     } />
-                    <Route path={NavigationUtil.pathMatchers.dashboard.home} element={
+                    <Route path={NavigationUtil.pathMatchers.ofDashboard.home} element={
                         <Dashboard testsArray={tests} setTestsArray={handleTestsChange} removeTestById={removeTestById} />
                     } />
-                    <Route path={NavigationUtil.pathMatchers.tests.new} element={
+                    <Route path={NavigationUtil.pathMatchers.ofTests.new} element={
                         <TestCreate createTest={addTest} />
                     } />
-                    <Route path={NavigationUtil.pathMatchers.tests.edit} element={
+                    <Route path={NavigationUtil.pathMatchers.ofTests.edit} element={
                         <TestEdit getTestById={getTestById} updateTestById={updateTest} />
                     } />
-                    <Route path={NavigationUtil.pathMatchers.tests.run} element={
+                    <Route path={NavigationUtil.pathMatchers.ofTests.run} element={
                         <TestRun getTestById={getTestById} />
                     } />
                     <Route path="*" element={

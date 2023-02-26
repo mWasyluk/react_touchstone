@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import CheckedTestImage from 'assets/checked-file.png'
+import NavigationUtil from 'utils/NavigationUtil';
 import TasksList from 'components/TasksList';
 import TestHeader from './_components/TestHeader';
 
@@ -10,13 +11,13 @@ function TestRun(props) {
         updateTestById = () => { },
     } = props;
 
-    const navi = useNavigate();
+    const navigateTo = useNavigate();
     const { id } = useParams();
     const currentTest = getTestById(id)
 
     const saveRun = () => {
         updateTestById(currentTest);
-        navi("/dashboard");
+        navigateTo(NavigationUtil.links.ofDashboard.home);
     }
 
     return (
